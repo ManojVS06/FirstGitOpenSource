@@ -192,7 +192,16 @@ def iter_int(u,t0, tf, dt, Ntrunc):
 
     # The total number of iterated integrals of word length less than or equal to the truncation length is computed.
     # total_iterint = num_input + num_input**2 + ... + num_input**Ntrunc
-    total_iterint = num_input*(1-pow(num_input,Ntrunc))/(1-num_input)
+    if num_input == 1:
+    total_iterint = Ntrunc
+else:
+    total_iterint = num_input * (1 - pow(num_input, Ntrunc)) // (1 - num_input)
+    # Handle special case where num_input = 1 (to avoid division by zero)
+     #if num_input == 1:
+     #total_iterint = Ntrunc
+     #else:
+     #total_iterint = num_input * (1 - pow(num_input, Ntrunc)) // (1 - num_input)
+
     # This is transformed into an integer.
     total_iterint = int(total_iterint)
     
